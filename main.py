@@ -1,6 +1,9 @@
 from flask import Flask, render_template, url_for
 from util import json_response
 
+import datamanger_boards
+import datamanager_cards
+import datamanager_statuses
 import data_handler
 
 app = Flask(__name__)
@@ -21,7 +24,7 @@ def get_boards():
     """
     All the boards
     """
-    return data_handler.get_boards()
+    return datamanger_boards.get_boards()
 
 
 @app.route("/get-cards/<int:board_id>")
@@ -44,3 +47,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    localStorage.setItem(keyInLocalStorage, JSON.stringify(sampleData));
