@@ -4,7 +4,7 @@ from util import json_response
 import datamanger_boards
 import datamanager_cards
 import datamanager_statuses
-import data_handler
+
 
 app = Flask(__name__)
 
@@ -34,7 +34,7 @@ def get_cards_for_board(board_id: int):
     All cards that belongs to a board
     :param board_id: id of the parent board
     """
-    return data_handler.get_cards_for_board(board_id)
+    return datamanager_cards.get_cards_for_board(b_id=board_id)
 
 
 def main():
@@ -47,4 +47,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-    localStorage.setItem(keyInLocalStorage, JSON.stringify(sampleData));
+
