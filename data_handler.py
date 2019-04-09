@@ -1,4 +1,4 @@
-import connection
+import persistence
 
 @connection.connection_handler
 def get_card_status(status_id):
