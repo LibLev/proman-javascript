@@ -13,18 +13,27 @@ export let dataHandler = {
             method: 'GET',
             credentials: 'same-origin'
         })
-        .then(response => response.json())  // parse the response as JSON
-        .then(json_response => callback(json_response));  // Call the `callback` with the returned object
+            .then(response => response.json())  // parse the response as JSON
+            .then(json_response => callback(json_response))  // Call the `callback` with the returned object
+        //.catch(???);
     },
     _api_post: function (url, data, callback) {
-        // it is not called from outside
-        // sends the data to the API, and calls callback function
+        console.log(url);
+        console.log(JSON.stringify(data));
+        return fetch(url, {
+            credentials: 'same-origin', // 'include', default: 'omit'
+            method: 'POST', // 'GET', 'PUT', 'DELETE', etc.
+            body: JSON.stringify(data), // Coordinate the body type with 'Content-Type'
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+        })
     },
-    init: function () {
+    init: function (callback) {
+
     },
     getBoards: function (callback) {
         // the boards are retrieved and then the callback function is called with the boards
-
         // Here we use an arrow function to keep the value of 'this' on dataHandler.
         //    if we would use function(){...} here, the value of 'this' would change.
         this._api_get('/get-boards', (response) => {
@@ -50,7 +59,8 @@ export let dataHandler = {
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
         let idNumber = boardTitle.split(' ')[1];
-        callback({id:idNumber, title:boardTitle});
+        this._api_post("/store-board/"+idNumber+"/"+boardTitle+"", {board_id: idNumber, board_title: boardTitle});
+        callback({id: idNumber, title: boardTitle});
 
     },
     createNewCard: function (cardTitle, boardId, statusId, callback) {
