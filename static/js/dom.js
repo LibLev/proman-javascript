@@ -45,10 +45,27 @@ export let dom = {
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
+        dataHandler.getCardsByBoardId(function (board_id, cards) {
+            dom.showCards(cards);
+            console.log(cards)
+        })
     },
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
+        const createCard = function (title, callback){
+            const template = document.querySelector('#card-template');
+            const clone = document.importNode(template.content, true);
+
+            clone.querySelector('.card-title').textContent = title;
+            callback(clone)
+        };
+        const dom = this;
+        for (let card of cards) {
+            createCard(card.title, function (element) {
+                dom._appendToElement(document.querySelector('#cards'), element)
+            })
+        }
     },
     addBoard: function (callback) {
 
