@@ -63,7 +63,7 @@ export let dom = {
         const dom = this;
         for (let card of cards) {
             createCard(card.title, function (element) {
-                dom._appendToElement(document.querySelector('#cards'), element)
+                dom._appendToElement(document.querySelector('board-column-content'), element)
             })
         }
     },

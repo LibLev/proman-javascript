@@ -51,7 +51,6 @@ export let dataHandler = {
     },
     getCard: function (cardId, callback) {
         // the card is retrieved and then the callback function is called with the card
-
     },
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
