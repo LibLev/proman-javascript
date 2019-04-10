@@ -1,50 +1,47 @@
 // It uses data_handler.js to visualize elements
-import { dataHandler } from "./data_handler.js";
+import {dataHandler} from "./data_handler.js";
 
 export let dom = {
-    _appendToElement: function (elementToExtend, textToAppend, prepend = false) {
+    _appendToElement: function (elementToExtend, childNode, prepend = false) {
         // function to append new DOM elements (represented by a string) to an existing DOM element
-        let fakeDiv = document.createElement('div');
-        fakeDiv.innerHTML = textToAppend.trim();
-
-        for (let childNode of fakeDiv.childNodes) {
-            if (prepend) {
-                elementToExtend.prependChild(childNode);
-            } else {
-                elementToExtend.appendChild(childNode);
-            }
-        }
-
+        elementToExtend.appendChild(childNode);
         return elementToExtend.lastChild;
     },
     init: function () {
         // This function should run once, when the page is loaded.
+        let addBoardButton = document.getElementById('create-board');
+        const that =this;
+        addBoardButton.addEventListener('click',function (event) {
+            let boards = document.getElementById('boards');
+            let lastNumber = boards.childElementCount;
+            dataHandler.createNewBoard('Board '+(lastNumber+1), board => that.showBoards([board]));
+
+        })
     },
     loadBoards: function () {
         // retrieves boards and makes showBoards called
-        dataHandler.getBoards(function(boards){
+        dataHandler.getBoards(function (boards) {
             dom.showBoards(boards);
+            console.log(boards);
         });
     },
     showBoards: function (boards) {
         // shows boards appending them to #boards div
         // it adds necessary event listeners also
+        const creatBoard = function (title, callback) {
+            const template = document.querySelector('#board-template');
+            const clone = document.importNode(template.content, true);
 
-        let boardList = '';
+            clone.querySelector('.board-title').textContent = title;
+            callback(clone)
 
-        for(let board of boards){
-            boardList += `
-                <li>${board.title}</li>
-            `;
+        };
+        const dom = this;
+        for (let board of boards) {
+            creatBoard(board.title, function (element) {
+                dom._appendToElement(document.querySelector('#boards'), element);
+            });
         }
-
-        const outerHtml = `
-            <ul class="board-container">
-                ${boardList}
-            </ul>
-        `;
-
-        this._appendToElement(document.querySelector('#boards'), outerHtml);
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
@@ -53,5 +50,8 @@ export let dom = {
         // shows the cards of a board
         // it adds necessary event listeners also
     },
-    // here comes more features
+    addBoard: function (callback) {
+
+
+    }
 };
