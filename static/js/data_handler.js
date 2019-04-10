@@ -38,11 +38,15 @@ export let dataHandler = {
         //    if we would use function(){...} here, the value of 'this' would change.
         this._api_get('/get-boards', (response) => {
             this._data = response;
+            console.log(this._data.length);
+            for(let ind =0; ind< this._data.length; ind++){
+                this.getBoard(Object.getOwnPropertyDescriptor(this._data,ind).value.id)
+            }
             callback(response);
         });
     },
     getBoard: function (boardId, callback) {
-        // the board is retrieved and then the callback function is called with the board
+    console.log((boardId))
     },
     getStatuses: function (callback) {
         // the statuses are retrieved and then the callback function is called with the statuses
