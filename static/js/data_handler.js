@@ -59,7 +59,7 @@ export let dataHandler = {
     createNewBoard: function (boardTitle, callback) {
         // creates new board, saves it and calls the callback function with its data
         let idNumber = boardTitle.split(' ')[1];
-        this._api_post("/store-board/"+idNumber+"/"+boardTitle+"", {board_id: idNumber, board_title: boardTitle});
+        this._api_post("/store-board/"+idNumber+"/Í"+boardTitle+"", {board_id: idNumber, board_title: boardTitle});
         callback({id: idNumber, title: boardTitle});
 
     },
