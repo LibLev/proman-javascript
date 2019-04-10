@@ -1,3 +1,4 @@
+import persistence
 import connection
 
 @connection.connection_handler
