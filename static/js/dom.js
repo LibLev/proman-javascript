@@ -33,6 +33,7 @@ export let dom = {
             const clone = document.importNode(template.content, true);
 
             clone.querySelector('.board-title').textContent = title;
+            clone.querySelector('section').id=title.split(' ')[1];
             callback(clone)
 
         };

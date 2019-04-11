@@ -42,6 +42,10 @@ def get_cards_for_board(board_id: int):
     """
     return datamanager_cards.get_cards_for_board(b_id=board_id)
 
+@app.route("/update-board-name/<board_id>/<board_name>", methods=['POST'])
+def update_board_name(board_id, board_name):
+    return datamanger_boards.update_board_title(b_id=board_id, b_title=board_name)
+
 
 def main():
     app.run(debug=True)
