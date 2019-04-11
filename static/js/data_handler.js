@@ -43,6 +43,10 @@ export let dataHandler = {
             callback(response);
         });
     },
+    saveBoardName: function(boardID,newName){
+        this._api_post("/update-board-name/"+boardID+"/"+newName+"",{board_id:boardID, board_name:newName});
+            callback({board_id:boardID, board_name:newName})
+    },
     getBoard: function (boardId, callback) {
     },
     getStatuses: function (callback) {
