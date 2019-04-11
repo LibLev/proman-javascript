@@ -33,7 +33,15 @@ export let dom = {
             const clone = document.importNode(template.content, true);
 
             clone.querySelector('.board-title').textContent = title;
-            callback(clone)
+            callback(clone);
+
+            let columnsNew = document.getElementById('new');
+            columnsNew.addEventListener('dblclick', function () {
+                console.log('fasza')
+            });
+            let columnsInProgress = document.getElementById('in-progress');
+            let columnsTesting = document.getElementById('testing');
+            let columnsDone = document.getElementById('done');
 
         };
         const dom = this;
