@@ -11,10 +11,10 @@ export let dom = {
         // This function should run once, when the page is loaded.
         let addBoardButton = document.getElementById('create-board');
         const that = this;
-        addBoardButton.addEventListener('click',function (event) {
+        addBoardButton.addEventListener('click', function (event) {
             let boards = document.getElementById('boards');
             let lastNumber = boards.childElementCount;
-            dataHandler.createNewBoard('Board '+(lastNumber+1), board => that.showBoards([board]));
+            dataHandler.createNewBoard('Board ' + (lastNumber + 1), board => that.showBoards([board]));
 
         })
     },
@@ -33,15 +33,15 @@ export let dom = {
             const clone = document.importNode(template.content, true);
 
             clone.querySelector('.board-title').textContent = title;
+            const column = clone.querySelectorAll('.board-column-title');
+                for (let i = 0; i < column.length; i++) {
+                    column[i].addEventListener("dblclick", function () {
+                        let node = document.createElement("INPUT");
+                        column[i].replaceWith(node);
+                    });
+            }
             callback(clone);
 
-            let columnsNew = document.getElementById('new');
-            columnsNew.addEventListener('dblclick', function () {
-                console.log('fasza')
-            });
-            let columnsInProgress = document.getElementById('in-progress');
-            let columnsTesting = document.getElementById('testing');
-            let columnsDone = document.getElementById('done');
 
         };
         const dom = this;
