@@ -40,7 +40,11 @@ export let dom = {
                     column.replaceWith(textfield);
                     textfield.addEventListener('keydown', function (e) {
                         if (e.keyCode === 13) {
-                            console.log(column)
+                            let newTitle = document.createElement("div");
+                            newTitle.className = "board-column-title";
+                            let value = textfield.value;
+                            let newContent = document.createTextNode(value);
+                            textfield.replaceWith(newTitle.appendChild(newContent))
                         }
                     })
 
