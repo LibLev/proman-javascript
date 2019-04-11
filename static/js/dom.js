@@ -37,6 +37,13 @@ export let dom = {
 
             clone.querySelector('.board-title').textContent = title;
             clone.querySelector('section').id = title.split(' ')[1];
+            let columns = clone.querySelectorAll('.board-column-title');
+            for(let [i, column] of columns.entries()){
+                column.addEventListener('dblclick', function(){
+                    column.replaceWith(document.createElement("INPUT"));
+                    console.log("yeah")
+                })
+            }
             callback(clone)
 
         };
