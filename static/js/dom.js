@@ -34,10 +34,17 @@ export let dom = {
 
             clone.querySelector('.board-title').textContent = title;
             let columns = clone.querySelectorAll('.board-column-title');
-            for(let [i, column] of columns.entries()){
-                column.addEventListener('dblclick', function(){
-                    column.replaceWith(document.createElement("INPUT"));
-                    console.log("yeah")
+            for (let [i, column] of columns.entries()) {
+                column.addEventListener('dblclick', function () {
+                    let textfield = document.createElement("INPUT");
+                    column.replaceWith(textfield);
+                    textfield.addEventListener('keydown', function (e) {
+                        if (e.keyCode === 13) {
+                            console.log(column)
+                        }
+                    })
+
+
                 })
             }
             callback(clone)
