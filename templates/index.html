@@ -18,47 +18,7 @@
     <script type="module" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </head>
 <body>
-<template>
-    <section class="board">
-        <div class="board-header"><span class="board-title">Board 1</span>
-            <button class="board-add">Add Card</button>
-            <button class="board-toggle"><i class="fas fa-chevron-down"></i></button>
-        </div>
-        <div class="board-columns">
-            <div class="board-column">
-                <div class="board-column-title">New</div>
-                <div class="board-column-content">
-                    <div class="card">
-                        <div class="card-remove"><i class="fas fa-trash-alt"></i></div>
-                        <div class="card-title">Card 1</div>
-                    </div>
-                </div>
-                <div class="board-column">
-                    <div class="board-column-title">In Progress</div>
-                    <div class="board-column-content">
-                        <div class="card">
-                            <div class="card-remove"><i class="fas fa-trash-alt"></i></div>
-                            <div class="card-title">Card 1</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="board-column">
-                    <div class="board-column-title">Testing</div>
-                    <div class="board-column-content">
-                        <div class="card">
-                            <div class="card-remove"><i class="fas fa-trash-alt"></i></div>
-                            <div class="card-title">Card 1</div>
-                        </div>
 
-                    </div>
-                    <div class="board-column">
-                        <div class="board-column-title">Done</div>
-                        <div class="board-column-content">
-                        </div>
-                    </div>
-                </div>
-    </section>
-</template>
 <h1>ProMan</h1>
 <div class="board-container">
     <button id="create-board">Add new board</button>
