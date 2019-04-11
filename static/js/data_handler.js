@@ -38,9 +38,7 @@ export let dataHandler = {
         //    if we would use function(){...} here, the value of 'this' would change.
         this._api_get('/get-boards', (response) => {
             this._data = response;
-            console.log(this._data.length);
             for(let data of this._data){
-                console.log(data.id)
             }
             callback(response);
         });

@@ -33,15 +33,14 @@ export let dom = {
             const clone = document.importNode(template.content, true);
 
             clone.querySelector('.board-title').textContent = title;
-            const column = clone.querySelectorAll('.board-column-title');
-                for (let i = 0; i < column.length; i++) {
-                    column[i].addEventListener("dblclick", function () {
-                        let node = document.createElement("INPUT");
-                        column[i].replaceWith(node);
-                    });
+            let columns = clone.querySelectorAll('.board-column-title');
+            for(let [i, column] of columns.entries()){
+                column.addEventListener('dblclick', function(){
+                    column.replaceWith(document.createElement("INPUT"));
+                    console.log("yeah")
+                })
             }
-            callback(clone);
-
+            callback(clone)
 
         };
         const dom = this;
