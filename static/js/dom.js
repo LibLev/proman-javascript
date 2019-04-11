@@ -22,7 +22,6 @@ export let dom = {
         // retrieves boards and makes showBoards called
         dataHandler.getBoards(function (boards) {
             dom.showBoards(boards);
-            console.log(boards);
         });
     },
     showBoards: function (boards) {
@@ -33,6 +32,13 @@ export let dom = {
             const clone = document.importNode(template.content, true);
 
             clone.querySelector('.board-title').textContent = title;
+            let columns = clone.querySelectorAll('.board-column-title');
+            for(let [i, column] of columns.entries()){
+                column.addEventListener('dblclick', function(){
+                    column.replaceWith(document.createElement("INPUT"));
+                    console.log("yeah")
+                })
+            }
             callback(clone)
 
         };
