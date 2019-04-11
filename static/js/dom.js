@@ -11,10 +11,10 @@ export let dom = {
         // This function should run once, when the page is loaded.
         let addBoardButton = document.getElementById('create-board');
         const that = this;
-        addBoardButton.addEventListener('click',function (event) {
+        addBoardButton.addEventListener('click', function (event) {
             let boards = document.getElementById('boards');
             let lastNumber = boards.childElementCount;
-            dataHandler.createNewBoard('Board '+(lastNumber+1), board => that.showBoards([board]));
+            dataHandler.createNewBoard('Board ' + (lastNumber + 1), board => that.showBoards([board]));
 
         })
     },
@@ -22,7 +22,6 @@ export let dom = {
         // retrieves boards and makes showBoards called
         dataHandler.getBoards(function (boards) {
             dom.showBoards(boards);
-            console.log(boards);
         });
     },
     showBoards: function (boards) {
@@ -31,9 +30,13 @@ export let dom = {
         const creatBoard = function (title, callback) {
             const template = document.querySelector('#board-template');
             const clone = document.importNode(template.content, true);
+            const boardTitles = clone.querySelector('.board-title');
+            boardTitles.addEventListener('dblclick', function (event) {
+               boardTitles
+            });
 
             clone.querySelector('.board-title').textContent = title;
-            clone.querySelector('section').id=title.split(' ')[1];
+            clone.querySelector('section').id = title.split(' ')[1];
             callback(clone)
 
         };
@@ -54,5 +57,7 @@ export let dom = {
     addBoard: function (callback) {
 
 
+    },
+    renameBoard: function (callback) {
     }
 };
