@@ -39,8 +39,8 @@ export let dataHandler = {
         this._api_get('/get-boards', (response) => {
             this._data = response;
             console.log(this._data.length);
-            for(let ind =0; ind< this._data.length; ind++){
-                this.getBoard(Object.getOwnPropertyDescriptor(this._data,ind).value.id)
+            for(let data of this._data){
+                console.log(data.id)
             }
             callback(response);
         });
