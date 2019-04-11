@@ -27,6 +27,12 @@ def get_boards():
     return datamanger_boards.get_boards()
 
 
+@app.route('/store-board/<int:board_id>/<board_title>', methods=['POST'])
+@json_response
+def store_board(board_id: int, board_title):
+    return datamanger_boards.store_board(b_id=board_id, b_title=board_title)
+
+
 @app.route("/get-cards/<int:board_id>")
 @json_response
 def get_cards_for_board(board_id: int):

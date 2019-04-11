@@ -10,7 +10,7 @@ export let dom = {
     init: function () {
         // This function should run once, when the page is loaded.
         let addBoardButton = document.getElementById('create-board');
-        const that =this;
+        const that = this;
         addBoardButton.addEventListener('click',function (event) {
             let boards = document.getElementById('boards');
             let lastNumber = boards.childElementCount;
