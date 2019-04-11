@@ -43,8 +43,11 @@ export let dataHandler = {
             callback(response);
         });
     },
+    saveBoardName: function(boardID,newName){
+        this._api_post("/update-board-name/"+boardID+"/"+newName+"",{board_id:boardID, board_name:newName});
+            callback({board_id:boardID, board_name:newName})
+    },
     getBoard: function (boardId, callback) {
-    console.log((boardId))
     },
     getStatuses: function (callback) {
         // the statuses are retrieved and then the callback function is called with the statuses
@@ -69,4 +72,5 @@ export let dataHandler = {
         // creates new card, saves it and calls the callback function with its data
     }
     // here comes more features
+
 };
