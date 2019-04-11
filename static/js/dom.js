@@ -54,8 +54,20 @@ export let dom = {
             let columns = clone.querySelectorAll('.board-column-title');
             for (let [i, column] of columns.entries()) {
                 column.addEventListener('dblclick', function () {
-                    column.replaceWith(document.createElement("INPUT"));
-                    console.log("yeah")
+                    let textfield = document.createElement("INPUT");
+                    column.replaceWith(textfield);
+                    textfield.addEventListener('keydown', function (e) {
+                        if (e.keyCode === 13) {
+                            let newTitle = document.createElement("div");
+                            newTitle.setAttribute("class", "board-column-title");
+                            let value = textfield.value;
+                            let newContent = document.createTextNode(value);
+                            textfield.replaceWith(newTitle);
+                            newTitle.appendChild(newContent)
+                        }
+                    })
+
+
                 })
             }
             callback(clone)
@@ -78,7 +90,5 @@ export let dom = {
     addBoard: function (callback) {
 
 
-    },
-    renameBoard: function (callback) {
     }
 };
