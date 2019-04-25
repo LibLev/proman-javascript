@@ -5,9 +5,7 @@ import datamanger_boards
 import datamanager_cards
 import datamanager_statuses
 
-
 app = Flask(__name__)
-
 
 
 @app.route("/")
@@ -59,4 +57,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
