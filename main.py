@@ -1,6 +1,5 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for
 from util import json_response
-import json
 
 import datamanger_boards
 import datamanager_cards
@@ -28,14 +27,9 @@ def get_boards():
     return datamanger_boards.get_boards()
 
 
-@app.route('/store-board', methods=['POST'])
+@app.route('/store-board/<int:board_id>/<board_title>', methods=['POST'])
 @json_response
-def store_board():
-    data = request.get_data(parse_form_data='data')
-    json_data = json.loads(data)
-    board_id = json_data['board_id']
-    board_title = json_data['board_title']
-    print(board_title, board_id)
+def store_board(board_id: int, board_title):
     return datamanger_boards.store_board(b_id=board_id, b_title=board_title)
 
 
