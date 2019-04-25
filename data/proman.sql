@@ -97,3 +97,4 @@ insert into board_statuses (board_id, status_id) values (2,4);
 insert into board_statuses (board_id, status_id) values (2,5);
 insert into board_statuses (board_id, status_id) values (2,6);
 insert into board_statuses (board_id, status_id) values (2,7);
+select pg_catalog.setval('board_statuses_id_seq', 8, true)

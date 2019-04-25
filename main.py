@@ -36,7 +36,12 @@ def store_board():
     board_id = json_data['board_id']
     board_title = json_data['board_title']
     print(board_title, board_id)
-    return datamanger_boards.store_board(b_id=board_id, b_title=board_title)
+    datamanger_boards.store_board(b_id=board_id, b_title=board_title)
+    basic_statuses = ['new', 'in progress', 'testing', 'done']
+    for status in basic_statuses:
+        print(status)
+        datamanager_statuses.insert_new_statuses(board_id=board_id, status=status)
+    return True
 
 
 @app.route("/get-cards/<int:board_id>")
