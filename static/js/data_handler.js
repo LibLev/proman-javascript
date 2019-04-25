@@ -51,18 +51,24 @@ export let dataHandler = {
     },
     getStatuses: function (callback) {
         // the statuses are retrieved and then the callback function is called with the statuses
+        fetch('/api/statuses')
+            .then((response) => response.json())
+            .then( function (statuses) {
+                callback(statuses);})
     },
     getStatus: function (statusId, callback) {
         // the status is retrieved and then the callback function is called with the status
+
+    },
+    getCards: function(callback){
+        fetch('/api/cards')
+            .then((response) => response.json())
+            .then(function (cards) {
+                callback(cards);
+            })
     },
     getCardsByBoardId: function (boardId, callback) {
         // the cards are retrieved and then the callback function is called with the cards
-        this._api_get('/get-cards/'+'board_id'+'',(response)=>{
-            this._data = response;
-            for(let data of this._data){
-            }
-            callback(response);
-        })
     },
     getCard: function (cardId, callback) {
         // the card is retrieved and then the callback function is called with the card

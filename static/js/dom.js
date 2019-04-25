@@ -82,21 +82,22 @@ export let dom = {
         }
 
     },
-    loadCards: function (boardId) {
+    loadCards: function () {
         // retrieves cards and makes showCards called
-                dataHandler.getCardsByBoardId(boardId, function (cards) {
-                dom.showCards(cards);
-        })
+        dataHandler.getCards(dom.showCards);
 
     },
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
-        const createCard = function (title, id, callback) {
-            const template = document.querySelector('#card-template');
-            const clone = document.importNode(template.content, true);
-
+        for (let data of cards){
+            let card = document.createElement('div');
+            card.classList.add('card')
+            card.setAttribute("id", `${data.id}c`);
+            card.innerHTML = `${data.title}c`;
+            $(`#b${data.board_id}`).children(`.status${data.status_id}`).append(card);
         }
+
     },
     addBoard: function (callback) {
 

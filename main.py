@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for
-from util import json_response
+from util import json_response, jsonify
 
 import datamanger_boards
 import datamanager_cards
@@ -31,14 +31,15 @@ def store_board(board_id: int, board_title):
     return datamanger_boards.store_board(b_id=board_id, b_title=board_title)
 
 
-@app.route("/get-cards/<int:board_id>")
+@app.route("/api/cards")
 @json_response
-def get_cards_for_board(board_id: int):
+def get_cards():
     """
     All cards that belongs to a board
     :param board_id: id of the parent board
     """
-    return datamanager_cards.get_cards_for_board(b_id=board_id)
+    cards = datamanager_cards.get_cards_for_board()
+    return jsonify(cards)
 
 
 @app.route("/update-board-name/<board_id>/<board_name>", methods=['POST'])
