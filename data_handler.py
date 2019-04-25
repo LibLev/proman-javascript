@@ -1,6 +1,7 @@
 import persistence
 import connection
 
+
 @connection.connection_handler
 def get_card_status(status_id):
     """

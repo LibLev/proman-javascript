@@ -1,12 +1,11 @@
 import connection
 
+
 @connection.connection_handler
-def get_cards_for_board(cursor, b_id):
+def get_cards_for_board(cursor):
     cursor.execute("""
     select * from cards
-    where board_id = %(b_id)s
-    """,
-        {'b_id': b_id})
+    """,)
     result = cursor.fetchall()
     return result
 

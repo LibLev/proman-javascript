@@ -1,5 +1,4 @@
 import connection
-import datamanager_statuses
 
 @connection.connection_handler
 def get_boards(cursor):
@@ -25,5 +24,4 @@ def update_board_title(cursor, b_id, b_title):
     update boards
     set title = %(b_title)s
     where id = %(b_id)s""",
-                   {'b_id': b_id, 'b_title': b_title})
-
+                   {'b_id':b_id, 'b_title':b_title})
