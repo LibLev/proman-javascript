@@ -39,7 +39,7 @@ export let dom = {
                   if(event.keyCode===13){
                       let value = textfield.value;
                       let newtag = document.createElement("span");
-                      newtag.setAttribute('calss', 'board-title');
+                      newtag.setAttribute('class', 'board-title');
                       newtag.setAttribute('id', boardID);
                       console.log(newtag);
                       newtag.textContent=value;
@@ -77,15 +77,26 @@ export let dom = {
         for (let board of boards) {
             creatBoard(board.title, board.id, function (element) {
                 dom._appendToElement(document.querySelector('#boards'), element);
+                dom.loadCards(board.id);
             });
         }
+
     },
     loadCards: function (boardId) {
         // retrieves cards and makes showCards called
+                dataHandler.getCardsByBoardId(boardId, function (cards) {
+                dom.showCards(cards);
+        })
+
     },
     showCards: function (cards) {
         // shows the cards of a board
         // it adds necessary event listeners also
+        const createCard = function (title, id, callback) {
+            const template = document.querySelector('#card-template');
+            const clone = document.importNode(template.content, true);
+
+        }
     },
     addBoard: function (callback) {
 
